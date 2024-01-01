@@ -52,4 +52,9 @@ export default class User extends Model {
     });
     return this;
   }
+
+  // Compara a senha fornecida com a senha armazenada criptografada
+  passwordIsValid(password) {
+    return bcryptjs.compare(password, this.password_hash);
+  }
 }
