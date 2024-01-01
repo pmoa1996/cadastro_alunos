@@ -17,6 +17,9 @@ export default class User extends Model {
       email: {
         type: Sequelize.STRING,
         defaultValue: '',
+        unique: {
+          msg: 'Email já existe',
+        },
         validate: {
           isEmail: {
             msg: 'E-mail inválido',
@@ -41,6 +44,7 @@ export default class User extends Model {
       sequelize,
     });
 
+    // Antes de salvar, criptografa a senha do usuário usando bcrypt
     this.addHook('beforeSave', async (user) => {
       user.password_hash = await bcryptjs.hash(user.password, 8);
     });
