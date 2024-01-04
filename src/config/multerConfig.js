@@ -15,11 +15,9 @@ export default {
 
   // Configuração do multer para armazenamento de arquivos
   storage: multer.diskStorage({
-    // Define o diretório de destino para os uploads
     destination: (req, file, cb) => {
-      cb(null, resolve(__dirname, '..', '..', 'uploads'));
+      cb(null, resolve(__dirname, '..', '..', 'uploads', 'images'));
     },
-    // Define o nome do arquivo a ser salvo
     filename: (req, file, cb) => {
       cb(null, `${Date.now()}_${aleatorio()}${extname(file.originalname)}`);
     },
